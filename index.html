@@ -138,13 +138,9 @@
 
                 <!-- Actions -->
                 <div class="flex items-center gap-3">
-                    <button onclick="toggleAdminModal()" class="px-3 py-1.5 text-xs rounded-full border border-gold-500/30 text-gold-300 hover:bg-gold-500/10 transition flex items-center gap-1.5" title="Painel da Designer">
-                        <i class="fa-solid fa-chart-line text-xs"></i>
-                        <span class="hidden sm:inline">Painel da Designer</span>
-                    </button>
-                    <a href="https://wa.me/5547997248239?text=Olá!%20Gostaria%20de%20consultar%20horários%20e%20valores." target="_blank" class="gold-button px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2">
+                    <a href="https://wa.me/5547997248239?text=Olá!%20Gostaria%20de%20consultar%20horários%20e%20valores." target="_blank" class="gold-button px-5 py-2.5 rounded-full text-xs font-semibold flex items-center gap-2">
                         <i class="fa-brands fa-whatsapp text-sm"></i>
-                        <span class="hidden sm:inline">WhatsApp</span>
+                        <span>WhatsApp</span>
                     </a>
                 </div>
             </div>
@@ -486,9 +482,6 @@
                 <a href="https://wa.me/5547997248239" target="_blank" class="w-9 h-9 rounded-full bg-darkcard border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-darkbg transition">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
-                <button onclick="toggleAdminModal()" class="px-3 py-2 rounded-lg bg-darkcard border border-gold-500/20 text-gray-400 hover:text-gold-300 transition">
-                    <i class="fa-solid fa-lock text-xs mr-1"></i> Painel da Designer
-                </button>
             </div>
         </div>
         <div class="text-center text-[11px] text-gray-600 mt-8 pt-4 border-t border-white/5">
@@ -505,99 +498,6 @@
     <div id="toast" class="fixed bottom-24 right-6 z-50 hidden bg-gold-500 text-darkbg px-5 py-3 rounded-xl font-semibold text-xs shadow-2xl items-center gap-2 transition-all">
         <i class="fa-solid fa-circle-check text-sm"></i>
         <span id="toast-text">Endereço copiado!</span>
-    </div>
-
-    <!-- SECRET / DESIGNER ADMIN DASHBOARD MODAL -->
-    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div class="glass-card w-full max-w-4xl rounded-3xl border border-gold-500/40 p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative text-gray-100">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between pb-4 mb-6 border-b border-gold-500/20">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gold-500/20 border border-gold-500/40 flex items-center justify-center text-gold-400">
-                        <i class="fa-solid fa-chart-pie"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-xl font-bold text-gold-gradient">Painel da Designer & Financeiro</h3>
-                        <p class="text-xs text-gray-400">Gestão de Agendamentos, Caixa e Faturamento</p>
-                    </div>
-                </div>
-                <button onclick="toggleAdminModal()" class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <!-- PIN Authentication View (Simple Security Layer) -->
-            <div id="admin-auth" class="py-8 text-center max-w-sm mx-auto space-y-4">
-                <i class="fa-solid fa-lock text-3xl text-gold-400"></i>
-                <h4 class="font-serif text-lg font-bold">Acesso Restrito da Designer</h4>
-                <p class="text-xs text-gray-400">Digite a senha de acesso para visualizar o controle financeiro e agendamentos registrados neste navegador.</p>
-                
-                <input type="password" id="admin-pin" placeholder="Digite a senha (Padrão: 1234)" class="w-full bg-darkbg border border-gold-500/30 rounded-xl px-4 py-3 text-center text-lg tracking-widest text-gold-300 focus:outline-none focus:border-gold-400">
-                <button onclick="authenticateAdmin()" class="gold-button w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider">Acessar Painel</button>
-                <div id="pin-error" class="text-xs text-red-400 hidden">Senha incorreta. Tente "1234".</div>
-            </div>
-
-            <!-- Admin Content View -->
-            <div id="admin-content" class="hidden space-y-6">
-                <!-- Top KPIs -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-darkbg/90 p-4 rounded-2xl border border-gold-500/20">
-                        <div class="text-[10px] text-gray-400 uppercase font-semibold">Atendimentos Salvos</div>
-                        <div id="kpi-total-bookings" class="font-serif text-2xl font-bold text-gold-400 mt-1">0</div>
-                    </div>
-                    <div class="bg-darkbg/90 p-4 rounded-2xl border border-gold-500/20">
-                        <div class="text-[10px] text-gray-400 uppercase font-semibold">Faturamento Est.</div>
-                        <div id="kpi-total-revenue" class="font-serif text-2xl font-bold text-emerald-400 mt-1">R$ 0,00</div>
-                    </div>
-                    <div class="bg-darkbg/90 p-4 rounded-2xl border border-gold-500/20">
-                        <div class="text-[10px] text-gray-400 uppercase font-semibold">Ticket Médio</div>
-                        <div id="kpi-avg-ticket" class="font-serif text-2xl font-bold text-gold-300 mt-1">R$ 130,00</div>
-                    </div>
-                    <div class="bg-darkbg/90 p-4 rounded-2xl border border-gold-500/20">
-                        <div class="text-[10px] text-gray-400 uppercase font-semibold">Dias Ativos</div>
-                        <div class="font-serif text-2xl font-bold text-gray-200 mt-1">Ter-Sáb</div>
-                    </div>
-                </div>
-
-                <!-- Fast New Entry / Quick Calculator -->
-                <div class="bg-darkbg/60 p-5 rounded-2xl border border-white/5 space-y-3">
-                    <h4 class="text-xs font-bold text-gold-300 uppercase tracking-wider flex items-center gap-2">
-                        <i class="fa-solid fa-plus-circle"></i> Lançamento Rápido de Atendimento / Caixa
-                    </h4>
-                    <div class="grid sm:grid-cols-4 gap-3 text-xs">
-                        <input type="text" id="calc-client" placeholder="Nome da Cliente" class="bg-darkcard border border-white/10 rounded-lg px-3 py-2 text-gray-200 focus:outline-none">
-                        <input type="text" id="calc-service" placeholder="Procedimento Ex: Fibra" class="bg-darkcard border border-white/10 rounded-lg px-3 py-2 text-gray-200 focus:outline-none">
-                        <input type="number" id="calc-price" placeholder="Valor R$" class="bg-darkcard border border-white/10 rounded-lg px-3 py-2 text-gray-200 focus:outline-none">
-                        <button onclick="addManualRecord()" class="gold-button py-2 rounded-lg font-bold">Salvar no Caixa</button>
-                    </div>
-                </div>
-
-                <!-- Booking Requests / Customer Records Table -->
-                <div>
-                    <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-3 flex items-center justify-between">
-                        <span><i class="fa-solid fa-list-check text-gold-400 mr-2"></i>Histórico de Agendamentos & Soluções</span>
-                        <button onclick="clearRecords()" class="text-[11px] text-red-400 hover:underline">Limpar Registros</button>
-                    </h4>
-                    <div class="overflow-x-auto rounded-xl border border-white/10 bg-darkbg/90">
-                        <table class="w-full text-left text-xs">
-                            <thead class="bg-darkcard text-gray-400 uppercase font-semibold border-b border-white/10">
-                                <tr>
-                                    <th class="p-3">Data/Hora</th>
-                                    <th class="p-3">Cliente</th>
-                                    <th class="p-3">Serviço</th>
-                                    <th class="p-3">Valor Est.</th>
-                                    <th class="p-3 text-right">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-table-body" class="divide-y divide-white/5 text-gray-300">
-                                <!-- Dynamic rows -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </div>
 
     <!-- JavaScript Application Logic -->
@@ -749,17 +649,6 @@
                 }
             }
 
-            // Save locally for Designer Dashboard
-            saveBookingToLocal({
-                name,
-                phone,
-                service,
-                date: formattedDate,
-                time,
-                price: 130, // Default estimated average for dashboard tracking
-                timestamp: new Date().toISOString()
-            });
-
             // Build Whatsapp Message
             let message = `*SOLICITAÇÃO DE AGENDAMENTO - LUNAR STUDIO NAIL*\n\n`;
             message += `👤 *Cliente:* ${name}\n`;
@@ -802,103 +691,6 @@
                 toast.classList.add('hidden');
                 toast.classList.remove('flex');
             }, 3000);
-        }
-
-        /* --- DESIGNER ADMIN & FINANCIAL SYSTEM --- */
-        let bookingsData = JSON.parse(localStorage.getItem('lunar_bookings') || '[]');
-
-        function toggleAdminModal() {
-            const modal = document.getElementById('admin-modal');
-            modal.classList.toggle('hidden');
-        }
-
-        function authenticateAdmin() {
-            const pin = document.getElementById('admin-pin').value;
-            const err = document.getElementById('pin-error');
-            
-            if (pin === '1234' || pin === 'admin') {
-                document.getElementById('admin-auth').classList.add('hidden');
-                document.getElementById('admin-content').classList.remove('hidden');
-                err.classList.add('hidden');
-                updateAdminDashboard();
-            } else {
-                err.classList.remove('hidden');
-            }
-        }
-
-        function saveBookingToLocal(bookingObj) {
-            bookingsData.unshift(bookingObj);
-            localStorage.setItem('lunar_bookings', JSON.stringify(bookingsData));
-        }
-
-        function updateAdminDashboard() {
-            const tbody = document.getElementById('admin-table-body');
-            const kpiTotal = document.getElementById('kpi-total-bookings');
-            const kpiRevenue = document.getElementById('kpi-total-revenue');
-
-            kpiTotal.innerText = bookingsData.length;
-
-            let totalRev = bookingsData.reduce((acc, curr) => acc + (parseFloat(curr.price) || 0), 0);
-            kpiRevenue.innerText = `R$ ${totalRev.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-
-            if (bookingsData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-500">Nenhum atendimento gravado ainda. Os agendamentos feitos no site aparecerão aqui!</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = bookingsData.map((b, index) => `
-                <tr class="hover:bg-white/5">
-                    <td class="p-3">${b.date || '-'} às ${b.time || '-'}</td>
-                    <td class="p-3 font-semibold text-gold-300">${b.name}</td>
-                    <td class="p-3">${b.service}</td>
-                    <td class="p-3 text-emerald-400 font-medium">R$ ${parseFloat(b.price || 130).toFixed(2)}</td>
-                    <td class="p-3 text-right">
-                        <button onclick="removeRecord(${index})" class="text-red-400 hover:text-red-300 p-1">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function addManualRecord() {
-            const name = document.getElementById('calc-client').value || 'Cliente Presencial';
-            const service = document.getElementById('calc-service').value || 'Procedimento Unhas';
-            const price = parseFloat(document.getElementById('calc-price').value) || 130;
-
-            const today = new Date();
-            const dateStr = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth()+1).toString().padStart(2, '0')}/${today.getFullYear()}`;
-
-            saveBookingToLocal({
-                name,
-                service,
-                price,
-                date: dateStr,
-                time: `${today.getHours()}:${today.getMinutes().toString().padStart(2, '0')}`,
-                timestamp: today.toISOString()
-            });
-
-            // Clear inputs
-            document.getElementById('calc-client').value = '';
-            document.getElementById('calc-service').value = '';
-            document.getElementById('calc-price').value = '';
-
-            updateAdminDashboard();
-            showToast("Atendimento salvo no caixa!");
-        }
-
-        function removeRecord(index) {
-            bookingsData.splice(index, 1);
-            localStorage.setItem('lunar_bookings', JSON.stringify(bookingsData));
-            updateAdminDashboard();
-        }
-
-        function clearRecords() {
-            if (confirm("Tem certeza que deseja apagar o histórico salvo no navegador?")) {
-                bookingsData = [];
-                localStorage.removeItem('lunar_bookings');
-                updateAdminDashboard();
-            }
         }
     </script>
 </body>
